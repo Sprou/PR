@@ -90,23 +90,3 @@ void ServoVertical() interrupt 9{
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-void main(){
-	WDTCN = 0xDE;   // Devalidation du watchdog 
-	WDTCN = 0xAD;
-
-	OSCXCN =  0xef; //configure external oscillator
-	timerDelay();
-	while(!(OSCXCN&(0x80))){}
-
-	OSCICN = OSCICN | 0x08; //utilise l'oscillateur externe
-	
-	initServoV();
-	
-	setServoVertical(cmd, param1, param2);
-		
-	while(1) 
-	{
-
-	}
-}
